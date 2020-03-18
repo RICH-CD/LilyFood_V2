@@ -1,0 +1,12 @@
+.hiden{
+	display: none;
+}
+.hideme
+{
+    display:none;
+    visibility:hidden;
+}
+.asignar
+{
+	background-color: #00F;
+}

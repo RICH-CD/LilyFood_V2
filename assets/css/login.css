@@ -1,0 +1,189 @@
+.centrado{
+    text-align:center;
+    font-size: 28px;
+    font-style: unset;
+	/* height: 100px;
+    width: 100px;
+	background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;*/
+}
+
+
+
+    
+
+
+
+
+.img_credenciales {
+    width: 20px;
+    height: 20px;
+}
+
+.btn_credenciales{
+	width: 60px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#login {
+    background-color: #ffffff;
+    margin: 0% 0 0 25%;
+    min-height: 350px;
+    min-width: 400px;
+    padding: 0;
+    width: 50%;
+    height: 60%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ddd;
+    display: block;
+}
+
+#img_cred {
+    
+    align-items: center;
+    align-content: center;
+    height: auto;
+    margin: 0 0 0 0;
+    padding: 0;
+    width: 15%;
+    min-height: 20px;
+    float: left;
+    
+    padding: 3% 0;
+}
+
+#txt_cred {
+    margin: 0% 0 0 15%;
+    padding: 0;
+    width: 80%;
+    border-style: solid;
+  
+   vertical-align: middle;
+
+}
+
+#btn_cred {
+    margin: 0% 0 0 20%;
+    padding: 0;
+    width: 60%;
+    border-style: solid;
+
+   vertical-align: middle;
+}
+
+#label_cred{
+	font-size: 12px;
+}
+
+@media screen and (min-width: 750px) {
+
+	#logo_login {
+	    background-image: url(../../images/Fondo_login.png);
+	    align-items: center;
+	    align-content: center;
+	    height: auto;
+	    min-height: 350px;
+	    margin: 0 0 0 0;
+	    padding: 0;
+	    width: 40%;
+	    height: 100%;
+	    float: left;
+	}
+
+	#credenciales {
+	    margin: 2.5% 0 0 45%;
+	    padding: 0;
+	    width: 50%;
+	    height: 50%;
+	    max-height: 350px;
+	    border-style: solid;
+	    border-width: 0px;
+	    border-color: none;
+	    border-radius: 15px;
+	    text-align: center;  
+	}
+
+	#login {
+	    background-color: #ffffff;
+	    margin: 0% 0 0 25%;
+	    max-height: 350px;
+	    max-width: 585px;
+	    padding: 0;
+	    width: 50%;
+	    height: 60%;
+	    border-style: solid;
+	    border-width: 1px;
+	    border-color: #f8f9fa;
+	    border-radius: 10px;
+	    box-shadow: 0 0 15px #ddd;
+	    display: block;
+	}
+
+	#img_login {
+        width: 70%;
+        margin: 15% 0 0 0;
+	
+
+		background-repeat: no-repeat;
+		background-position: 75%;
+		border-radius: 80%;
+		background-size: 100% auto;
+    }
+
+}
+
+@media screen and (max-width: 750px) {
+
+	#logo_login {
+	    background-image: url(../../images/Fondo_login.png);
+	    align-items: center;
+	    align-content: center;
+	    height: auto;
+	    margin: 0 0 0 0; 
+	    padding: 0;
+	    width: 100%;
+	    height: 20%;
+	    min-height: 10px;
+	}
+
+	#credenciales {
+	    margin: 2.5% 0 0 0%;
+	    padding: 0;
+	    width: 100%;
+	    height: 50%;
+	    border-style: solid;
+	    border-width: 0px;
+	    border-color: none;
+	    border-radius: 15px;
+	    text-align: center;
+	   
+	}
+
+	#login {
+	    background-color: #ffffff;
+	    margin: 0% 0 0 5%;
+	    min-height: 350px;
+	    min-width: 200px;
+	    padding: 0;
+	    width: 90%;
+	    height: 60%;
+	    border-style: solid;
+	    border-width: 1px;
+	    border-color: #f8f9fa;
+	    border-radius: 10px;
+	    box-shadow: 0 0 15px #ddd;
+	    display: block;
+	}
+
+	#img_login {
+        width: 40%;
+        margin: 5% 0 0 0;
+    }
+
+}
