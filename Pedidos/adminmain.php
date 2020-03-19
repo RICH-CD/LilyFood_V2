@@ -30,9 +30,9 @@ require('FuncionesPedidos.php');
 		<!-- Nav -->
 		<nav id="menu">
 			<ul class="links">
-				<li>Test</li>				    
-					<ul>testi</ul>
-				<li><a href='../index.php'><br>Cerrar Sesion</a><li>
+				<li><a href='main.php'>Principal</a></li>				    
+					<ul><a href='main.php'>Platillos</a></ul>
+                <li><a href='../index.php'>Cerrar Sesion</a><li>
 			</ul>
 			</nav>
 
@@ -41,7 +41,7 @@ require('FuncionesPedidos.php');
 			<section class="wrapper style1">
 			    <div class="inner">
 				<header class="align-center">
-                    <h1>Menu Principal</h1>
+                    <h1>Administrar</h1>
 					</header>
 
 					<div class="table-wrapper">
@@ -49,14 +49,14 @@ require('FuncionesPedidos.php');
                         <thead>
 							<tr style="height:50%;">
 								<td align="center">
-									Elija Opcion
+									Opciones para Administrar
 								</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr onclick="window.location = 'adminmain.php'">
+							<tr onclick="window.location = 'Platillos/platillosmain.php'">
 								<td align="center">
-									Administracion
+									Platillos
 								</td>
 							</tr>
 						</tbody>

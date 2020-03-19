@@ -1,5 +1,5 @@
 <?php
-require('FuncionesPedidos.php');
+require('../FuncionesPedidos.php');
 //$user = $_GET['u'];
 ?>
 <html>
@@ -11,8 +11,8 @@ require('FuncionesPedidos.php');
 		<title>Menu Principal</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="pedidos.css" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../pedidos.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -30,9 +30,9 @@ require('FuncionesPedidos.php');
 		<!-- Nav -->
 		<nav id="menu">
 			<ul class="links">
-				<li>Test</li>				    
-					<ul>testi</ul>
-				<li><a href='../index.php'><br>Cerrar Sesion</a><li>
+				<li><a href='main.php'>Principal</a></li>				    
+					<ul><a href='main.php'>Platillos</a></ul>
+                <li><a href='../index.php'>Cerrar Sesion</a><li>
 			</ul>
 			</nav>
 
@@ -41,7 +41,7 @@ require('FuncionesPedidos.php');
 			<section class="wrapper style1">
 			    <div class="inner">
 				<header class="align-center">
-                    <h1>Menu Principal</h1>
+                    <h1>Platillos</h1>
 					</header>
 
 					<div class="table-wrapper">
@@ -49,14 +49,24 @@ require('FuncionesPedidos.php');
                         <thead>
 							<tr style="height:50%;">
 								<td align="center">
-									Elija Opcion
+									Seleccione Opcion
 								</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr onclick="window.location = 'adminmain.php'">
+							<tr onclick="window.location = 'platillosAgregar.php'">
 								<td align="center">
-									Administracion
+									Agregar Platillo
+								</td>
+							</tr>
+							<tr onclick="window.location = 'platillosModificar.php'">
+								<td align="center">
+									Modificar Platillo
+								</td>
+							</tr>
+							<tr onclick="window.location = 'platillosEliminar.php'">
+								<td align="center">
+									Eliminar Platillo
 								</td>
 							</tr>
 						</tbody>
