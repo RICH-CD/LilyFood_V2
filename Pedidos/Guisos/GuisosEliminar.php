@@ -1,6 +1,6 @@
 <?php
 require('../FuncionesPedidos.php');
-$platillos = ObtenerPlatillo();
+$Guisos = ObtenerGuisos();
 $menu = ObtenerMenuAnidada();
 ?>
 <html>
@@ -72,22 +72,22 @@ $menu = ObtenerMenuAnidada();
 		}
         function valida()
 		{
-			if(document.getElementById("platillo").value=="")
-				swal('Warning!','Ingrese Platillo','warning');
+			if(document.getElementById("Guiso").value=="")
+				swal('Warning!','Ingrese Guiso','warning');
 			else
 				sendAjax()
 		}
-        function sendAjax(id,platillo)
+        function sendAjax(id,Guiso)
     	{
        
-        var dat = "opc=3&platillo="+platillo+"&id="+id;
+        var dat = "opc=3&Guiso="+Guiso+"&id="+id;
         $.ajax({
-            url: 'platillosAuxiliar.php',
+            url: 'GuisosAuxiliar.php',
             type: 'POST',
             data: dat,
         })
         .done(function(){
-            //swal ( "Success" ,  "Platillo Correctamente Eliminado" ,  "success" );
+            //swal ( "Success" ,  "Guiso Correctamente Eliminado" ,  "success" );
 			//sendFoto();
         })
         .fail(function(){
@@ -130,7 +130,7 @@ $menu = ObtenerMenuAnidada();
 			<section class="wrapper style1">
 			    <div class="inner">
 				<header class="align-center">
-                    <h1>Platillos</h1>
+                    <h1>Guisos</h1>
 					</header>
 
 					<div class="table-wrapper">
@@ -138,7 +138,7 @@ $menu = ObtenerMenuAnidada();
                         <thead>
 							<tr style="height:50%;">
 								<td align="center" colspan="2">
-									Eliminar Platillo
+									Eliminar Guiso
 								</td>
 							</tr>
 						</thead>
@@ -146,10 +146,10 @@ $menu = ObtenerMenuAnidada();
                         <br><br>
                         <table>
                             <?php
-                                foreach($platillos as $platillo)
+                                foreach($Guisos as $Guiso)
                                 {
                                     echo "<tr><td colspan='2' align='center'>";
-									echo "<span id='".$platillo['PlatilloID']."' ondblclick='asignar(this)'>".$platillo['Platillo']."</span>";
+									echo "<span id='".$Guiso['GuisoID']."' ondblclick='asignar(this)'>".$Guiso['Guiso']."</span>";
 									//echo "<button onclick='test()'>Test</button>";
                                     echo "</td></tr>";
                                 }

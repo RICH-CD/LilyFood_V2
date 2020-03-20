@@ -1,6 +1,6 @@
 <?php
 require('FuncionesPedidos.php');
-//$user = $_GET['u'];
+$menu = ObtenerMenu();
 ?>
 <html>
 	<head>
@@ -30,8 +30,13 @@ require('FuncionesPedidos.php');
 		<!-- Nav -->
 		<nav id="menu">
 			<ul class="links">
-				<li>Test</li>				    
-					<ul>testi</ul>
+				<li>Acceso Rapido</li>	
+				<?php
+					foreach($menu as $m)
+					{			    
+						echo "<ul><a href='Platillos/".$m['URL']."'>".$m['Menu']."</ul>";
+					}
+					?>
 				<li><a href='../index.php'><br>Cerrar Sesion</a><li>
 			</ul>
 			</nav>

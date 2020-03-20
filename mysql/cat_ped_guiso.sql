@@ -1,0 +1,3 @@
+CREATE TABLE `cat_ped_guiso` (`GuisoID` int(14) NOT NULL AUTO_INCREMENT,
+`TipoGuiso` int(2) DEFAULT NULL, `Guiso` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`GuisoID`)) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1

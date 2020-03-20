@@ -1,7 +1,7 @@
 <?php
 require('../FuncionesPedidos.php');
 $platillos = ObtenerPlatillo();
-//$user = $_GET['u'];
+$menu = ObtenerMenuAnidada();
 ?>
 <html>
 	<head>
@@ -69,8 +69,13 @@ $platillos = ObtenerPlatillo();
 		<!-- Nav -->
 		<nav id="menu">
 			<ul class="links">
-				<li><a href='../main.php'>Principal</a></li>				    
-					<ul><a href='main.php'>Platillos</a></ul>
+			<li>Acceso Rapido</li>	
+				<?php
+					foreach($menu as $m)
+					{			    
+						echo "<ul><a href='".$m['URL']."'>".$m['Menu']."</ul>";
+					}
+					?>
                 <li><a href='../../index.php'>Cerrar Sesion</a><li>
 			</ul>
 			</nav>
@@ -125,12 +130,12 @@ $platillos = ObtenerPlatillo();
 					</section>
 			</div>
 <!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/skel.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
 				</body>
 	
 </html>

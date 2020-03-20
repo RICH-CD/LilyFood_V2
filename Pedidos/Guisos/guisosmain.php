@@ -1,6 +1,6 @@
 <?php
-require('FuncionesPedidos.php');
-$menu = ObtenerMenu();
+require('../FuncionesPedidos.php');
+$menu = ObtenerMenuAnidada();
 ?>
 <html>
 	<head>
@@ -11,8 +11,8 @@ $menu = ObtenerMenu();
 		<title>Menu Principal</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="pedidos.css" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../pedidos.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -22,7 +22,7 @@ $menu = ObtenerMenu();
 	<body class="subpage">
 	<!-- Header -->
 	<header id="header">
-		<div class="logo"><a href="../index.php">Lily <span>food</span></a>
+		<div class="logo"><a href="../../index.php">Lily <span>food</span></a>
         </div>
 			<a href="#menu">Menu</a>
 	</header>
@@ -34,7 +34,7 @@ $menu = ObtenerMenu();
 				<?php
 					foreach($menu as $m)
 					{			    
-						echo "<ul><a href='Platillos/".$m['URL']."'>".$m['Menu']."</ul>";
+						echo "<ul><a href='".$m['URL']."'>".$m['Menu']."</ul>";
 					}
 					?>
                 <li><a href='../index.php'>Cerrar Sesion</a><li>
@@ -46,7 +46,7 @@ $menu = ObtenerMenu();
 			<section class="wrapper style1">
 			    <div class="inner">
 				<header class="align-center">
-                    <h1>Administrar</h1>
+                    <h1>Guisos</h1>
 					</header>
 
 					<div class="table-wrapper">
@@ -54,19 +54,24 @@ $menu = ObtenerMenu();
                         <thead>
 							<tr style="height:50%;">
 								<td align="center">
-									Opciones para Administrar
+									Seleccione Opcion
 								</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr onclick="window.location = 'Platillos/platillosmain.php'">
+							<tr onclick="window.location = 'GuisosAgregar.php'">
 								<td align="center">
-									Platillos
+									Agregar Guisos
 								</td>
 							</tr>
-							<tr onclick="window.location = 'Guisos/guisosmain.php'">
+							<tr onclick="window.location = 'GuisosModificar.php'">
 								<td align="center">
-									Guisos
+									Modificar Guisos
+								</td>
+							</tr>
+							<tr onclick="window.location = 'GuisosEliminar.php'">
+								<td align="center">
+									Eliminar Guisos
 								</td>
 							</tr>
 						</tbody>
@@ -76,13 +81,12 @@ $menu = ObtenerMenu();
 					</section>
 			</div>
 <!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/skel.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
 				</body>
 	
-</html>
 </html>

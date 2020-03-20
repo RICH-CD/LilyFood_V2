@@ -1,6 +1,6 @@
 <?php
 require('../FuncionesPedidos.php');
-$platillos = ObtenerPlatillo();
+$Guisos = ObtenerGuisos();
 $menu = ObtenerMenuAnidada();
 ?>
 <html>
@@ -16,85 +16,33 @@ $menu = ObtenerMenuAnidada();
 		<link rel="stylesheet" href="../pedidos.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-		<script src="sweetalert2.all.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-        var id;
-        function asignar(span)
-        {
-            id = span.id;
-            var plato = span.innerHTML;
-			const swalWithBootstrapButtons = Swal.mixin({
-			customClass: {
-				confirmButton: 'btn btn-success',
-				cancelButton: 'btn btn-danger'
-			},
-			buttonsStyling: false
-			})
-
-			swalWithBootstrapButtons.fire({
-			title: 'Esta Seguro?',
-			text: plato+" sera eliminado permanentemente!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonText: 'Si, borralo!',
-			cancelButtonText: 'No, cancela!',
-			reverseButtons: true
-			}).then((result) => {
-			if (result.value) {
-				sendAjax(id,plato);
-				swalWithBootstrapButtons.fire(
-				'Eliminado!',
-				plato+' ha sido eliminado.',
-				'success'
-				)
-			} else if (
-				/* Read more about handling dismissals below */
-				result.dismiss === Swal.DismissReason.cancel
-			) {
-				swalWithBootstrapButtons.fire(
-				'Cancelado',
-				plato+' esta seguro:)',
-				'error'
-				)
-			}
-			})
-			
-			
-			
-			//if(confirm("Desea eliminar "+plato))
-            	
-        }
-		function test()
-		{
-			
-		}
         function valida()
 		{
-			if(document.getElementById("platillo").value=="")
-				swal('Warning!','Ingrese Platillo','warning');
+			if(document.getElementById("Guiso").value=="")
+				swal('Warning!','Ingrese Guiso','warning');
 			else
 				sendAjax()
 		}
-        function sendAjax(id,platillo)
+        function sendAjax()
     	{
-       
-        var dat = "opc=3&platillo="+platillo+"&id="+id;
+        var Guiso =document.getElementById("Guiso").value;
+        var dat = "opc=1&Guiso="+Guiso;
         $.ajax({
-            url: 'platillosAuxiliar.php',
+            url: 'GuisosAuxiliar.php',
             type: 'POST',
             data: dat,
         })
         .done(function(){
-            //swal ( "Success" ,  "Platillo Correctamente Eliminado" ,  "success" );
+            swal ( "Success" ,  "Guiso Correctamente Agregada" ,  "success" );
 			//sendFoto();
         })
         .fail(function(){
-            swal ( "Oops" ,  "No se pudo Eliminar, Intentelo Mas tarde" ,  "error" );
+            swal ( "Oops" ,  "No se pudo Subir, Intentelo Mas tarde" ,  "error" );
         })
         .always(function(){
-            setTimeout(function(){ redireccionar(); }, 2000); 
+            setTimeout(function(){ redireccionar(); }, 1500); 
         });
     	}
         function redireccionar()
@@ -130,7 +78,7 @@ $menu = ObtenerMenuAnidada();
 			<section class="wrapper style1">
 			    <div class="inner">
 				<header class="align-center">
-                    <h1>Platillos</h1>
+                    <h1>Guisos</h1>
 					</header>
 
 					<div class="table-wrapper">
@@ -138,19 +86,34 @@ $menu = ObtenerMenuAnidada();
                         <thead>
 							<tr style="height:50%;">
 								<td align="center" colspan="2">
-									Eliminar Platillo
+									Agrege Guiso
 								</td>
 							</tr>
 						</thead>
+						<tbody>
+							<tr>
+								<td align="center">
+									Guiso
+								</td>
+                                <td align="center">
+									<input type="text" id="Guiso">
+								</td>
+                                
+							</tr>
+                            <tr>
+                                <td align="center" colspan="2">
+									<button onclick="valida();">Agregar</button>
+								</td>
+                            </tr>
+						</tbody>
                         </table>
                         <br><br>
                         <table>
                             <?php
-                                foreach($platillos as $platillo)
+                                foreach($Guisos as $Guiso)
                                 {
                                     echo "<tr><td colspan='2' align='center'>";
-									echo "<span id='".$platillo['PlatilloID']."' ondblclick='asignar(this)'>".$platillo['Platillo']."</span>";
-									//echo "<button onclick='test()'>Test</button>";
+                                    echo $Guiso['Guiso'];
                                     echo "</td></tr>";
                                 }
                             ?>
@@ -167,4 +130,6 @@ $menu = ObtenerMenuAnidada();
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
 				</body>
+	
+</html>
 </html>
