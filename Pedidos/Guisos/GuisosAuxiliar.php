@@ -4,12 +4,14 @@ $Guiso = $_POST['Guiso'];
 $opc=$_POST['opc'];
 if($opc==1)
 {
-    AgregarGuiso($Guiso);
+    $tg = $_POST['TipoGuiso'];
+    AgregarGuiso($Guiso,$tg);
 }
 elseif($opc==2)
 {
+    $tipo = $_POST['TipoGuiso'];
     $id = $_POST['id'];
-    ModificarGuiso($Guiso,$id);
+    ModificarGuiso($Guiso,$id,$tipo);
 }
 elseif($opc==3)
 {

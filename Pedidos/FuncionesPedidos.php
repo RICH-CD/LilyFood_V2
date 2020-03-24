@@ -3,30 +3,46 @@ function EliminarGuiso($Guiso,$id)
 {
     try{
 		require('../../motor/conexion.php');
-		$pst = $cxn->prepare("CALL Pro_Ped_Guisos(3,'".$Guiso."',".$id.")");
+		$pst = $cxn->prepare("CALL Pro_Ped_Guisos(3,'".$Guiso."',".$id.",0)");
 		$pst->execute();
 	}catch(PDOException $e){
 		print "Error! ".$e->getMessage()."<br>";
 		die();
 	}
 }
-function ModificarGuiso($Guiso,$id)
+function ModificarGuiso($Guiso,$id,$tipo)
 {
     try{
 		require('../../motor/conexion.php');
-		$pst = $cxn->prepare("CALL Pro_Ped_Guisos(2,'".$Guiso."',".$id.")");
+		$pst = $cxn->prepare("CALL Pro_Ped_Guisos(2,'".$Guiso."',".$id.",".$tipo.")");
 		$pst->execute();
 	}catch(PDOException $e){
 		print "Error! ".$e->getMessage()."<br>";
 		die();
 	}
 }
-function AgregarGuiso($Guiso)
+function AgregarGuiso($Guiso,$TipoGuiso)
 {
     try{
 		require('../../motor/conexion.php');
-		$pst = $cxn->prepare("CALL Pro_Ped_Guisos(1,'".$Guiso."',0)");
+		$pst = $cxn->prepare("CALL Pro_Ped_Guisos(1,'".$Guiso."',".$TipoGuiso.",0)");
 		$pst->execute();
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
+function ObtenerTipoGuiso()
+{
+    try{
+		$nom=array();
+		require('../../motor/conexion.php');
+		$sql = "CALL Pro_Ped_RegresaDatos(0, '', 0, 0, '')";
+		foreach($cxn->query($sql) as $row)
+		{
+			$nom[]=$row;
+	    }
+		return $nom;
 	}catch(PDOException $e){
 		print "Error! ".$e->getMessage()."<br>";
 		die();
@@ -69,7 +85,7 @@ function ObtenerGuisos()
     try{
 		$nom=array();
 		require('../../motor/conexion.php');
-		$sql = "CALL Pro_Ped_Guisos(0,'',0)";
+		$sql = "CALL Pro_Ped_Guisos(0,'',0,0)";
 		foreach($cxn->query($sql) as $row)
 		{
 			$nom[]=$row;

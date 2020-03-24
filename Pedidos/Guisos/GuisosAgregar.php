@@ -2,6 +2,7 @@
 require('../FuncionesPedidos.php');
 $Guisos = ObtenerGuisos();
 $menu = ObtenerMenuAnidada();
+$tipoGuiso = ObtenerTipoGuiso();
 ?>
 <html>
 	<head>
@@ -21,14 +22,21 @@ $menu = ObtenerMenuAnidada();
         function valida()
 		{
 			if(document.getElementById("Guiso").value=="")
-				swal('Warning!','Ingrese Guiso','warning');
+			{
+				if(document.getElementById("TipoGuiso").value=="")
+					swal('Warning!','Informacion incompleta','warning');
+			}
 			else
-				sendAjax()
+			{
+				//alert(document.getElementById("TipoGuiso").value)
+				sendAjax();
+			}
 		}
         function sendAjax()
     	{
         var Guiso =document.getElementById("Guiso").value;
-        var dat = "opc=1&Guiso="+Guiso;
+		var TipoGuiso = document.getElementById("TipoGuiso").value;
+        var dat = "opc=1&Guiso="+Guiso+"&TipoGuiso="+TipoGuiso;
         $.ajax({
             url: 'GuisosAuxiliar.php',
             type: 'POST',
@@ -97,6 +105,23 @@ $menu = ObtenerMenuAnidada();
 								</td>
                                 <td align="center">
 									<input type="text" id="Guiso">
+								</td>
+                                
+							</tr>
+							<tr>
+								<td align="center">
+									Tipo Guiso
+								</td>
+                                <td align="center">
+									<select align="center" class='campos_Form' id='TipoGuiso'>
+									tipoGuiso
+									<?php
+										foreach($tipoGuiso as $tg)
+										{
+											echo "<option value='".$tg['TipoGuisoID']."'>".$tg['TopoGuiso']."</option>";
+										}
+									?>
+									</select>
 								</td>
                                 
 							</tr>

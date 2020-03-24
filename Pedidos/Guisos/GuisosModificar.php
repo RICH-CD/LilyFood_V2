@@ -2,6 +2,7 @@
 require('../FuncionesPedidos.php');
 $Guisos = ObtenerGuisos();
 $menu = ObtenerMenuAnidada();
+$tipoGuiso = ObtenerTipoGuiso();
 ?>
 <html>
 	<head>
@@ -35,7 +36,8 @@ $menu = ObtenerMenuAnidada();
         function sendAjax()
     	{
         var Guiso =document.getElementById("Guiso").value;
-        var dat = "opc=2&Guiso="+Guiso+"&id="+id;
+		var TipoGuiso = document.getElementById("TipoGuiso").value;
+        var dat = "opc=2&Guiso="+Guiso+"&id="+id+"&TipoGuiso="+TipoGuiso;
         $.ajax({
             url: 'GuisosAuxiliar.php',
             type: 'POST',
@@ -104,6 +106,23 @@ $menu = ObtenerMenuAnidada();
 								</td>
                                 <td align="center">
 									<input type="text" id="Guiso">
+								</td>
+                                
+							</tr>
+							<tr>
+								<td align="center">
+									Tipo Guiso
+								</td>
+                                <td align="center">
+								<select align="center" class='campos_Form' id='TipoGuiso'>
+									tipoGuiso
+									<?php
+										foreach($tipoGuiso as $tg)
+										{
+											echo "<option value='".$tg['TipoGuisoID']."'>".$tg['TopoGuiso']."</option>";
+										}
+									?>
+									</select>
 								</td>
                                 
 							</tr>
