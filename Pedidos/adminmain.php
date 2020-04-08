@@ -59,7 +59,7 @@ $menu = ObtenerMenu();
 							</tr>
 						</thead>
 						<tbody>
-						<tr onclick="window.location = 'Costos/CostosMain.php'">
+							<tr onclick="window.location = 'Costos/CostosMain.php'">
 								<td align="center">
 									Costos
 								</td>

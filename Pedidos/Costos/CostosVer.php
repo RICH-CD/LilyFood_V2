@@ -21,7 +21,7 @@ $platillos = ObtenerPlatillo();
         function asignar(span)
         {
             var id = span.id;
-			window.location = 'CostosAsignar.php?id='+id;
+			window.location = 'CostosModificar.php?id='+id;
         }
 		</script>
 </head>
@@ -57,17 +57,15 @@ $platillos = ObtenerPlatillo();
 
 					<div class="table-wrapper">
                     <table>
-						<tr onclick="window.location = 'CostosAgregar.php'">
-							<td align="center">
-								Agregar Costo
-							</td>
-						</tr>
-						<tr onclick="window.location = 'CostosVer.php'">
-							<td align="center">
-								Ver Costos
-							</td>
-						</tr>
-                    </table>
+                            <?php
+                                foreach($platillos as $platillo)
+                                {
+                                    echo "<tr><td colspan='2' align='center'>";
+                                    echo "<span id='".$platillo['PlatilloID']."' onclick='asignar(this)'>".$platillo['Platillo']."</span>";
+                                    echo "</td></tr>";
+                                }
+                            ?>
+                        </table>
 					</div>
 			    </div>
 					</section>

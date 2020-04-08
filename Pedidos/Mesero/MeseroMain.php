@@ -52,19 +52,19 @@ $platillos = ObtenerPlatillo();
 			<section class="wrapper style1">
 			    <div class="inner">
 				<header class="align-center">
-                    <h1>Costos</h1>
+                    <h1>Mesero</h1>
 					</header>
 
 					<div class="table-wrapper">
                     <table>
-						<tr onclick="window.location = 'CostosAgregar.php'">
+						<tr onclick="window.location = 'MeseroAgregar.php'">
 							<td align="center">
-								Agregar Costo
+								Agregar Pedido
 							</td>
 						</tr>
 						<tr onclick="window.location = 'CostosVer.php'">
 							<td align="center">
-								Ver Costos
+								Ver Pedidos
 							</td>
 						</tr>
                     </table>

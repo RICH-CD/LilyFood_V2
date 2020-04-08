@@ -10,3 +10,57 @@
 {
 	background-color: #00F;
 }
+.scrollH
+{
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: auto;
+height: 50px;
+padding: 10px;
+white-space: nowrap;
+background-color: #00F;
+}
+.hijo
+{
+    width: 100px;
+height: 50px;
+margin: 0 10px 0 0;
+padding: 0;
+display: inline-block;
+}
+.azul{
+    background-color: chartreuse;
+    display: inline-block;
+    overflow-x: scroll;
+     height:auto;
+     width:100%;
+}
+.scrollHorizontal
+{
+    display: inline-block;
+    overflow-x: scroll;
+     height:auto;
+     width:100%;
+}
+.letras
+{
+    font-style: normal;;
+    font-weight: bold;
+    color: black;
+}
+#containerh {
+    overflow-y:scroll;
+    overflow-x:hidden;
+    transform: rotate(270deg) translateX(-100%);
+    transform-origin: top left;
+    background-color:#999;
+    position:absolute;
+    width:100vh;
+    height:100vw;
+  }
+  #containerh2 {
+    transform: rotate(90deg) translateY(-100vh);
+    transform-origin: top left;
+    white-space:nowrap;
+    font-size:0;
+  }
