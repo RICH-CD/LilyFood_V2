@@ -62,9 +62,9 @@ $platillos = ObtenerPlatillo();
 								Agregar Pedido
 							</td>
 						</tr>
-						<tr onclick="window.location = 'CostosVer.php'">
+						<tr onclick="window.location = 'MeseroPedidos.php'">
 							<td align="center">
-								Ver Pedidos
+								Ver Pedidos Activos
 							</td>
 						</tr>
                     </table>

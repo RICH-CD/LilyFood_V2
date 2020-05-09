@@ -16,6 +16,57 @@ function ObtenerCostoConTipoPlatillo($PlatilloID,$TipoGuiso)
 		die();
 	}
 }
+function ObtenerNoPedido()
+{
+	try
+	{
+		$nom;
+		require('../../motor/conexion.php');
+		$sql = "CALL Pro_Ped_RegresaDatos(2, '', 0, 0, '')";
+		foreach($cxn->query($sql) as $row)
+		{
+			$nom=$row;
+	    }
+		return $nom["NoPedido"];
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
+function ObtenerPedidosActivos()
+{
+	try
+	{
+		$nom=array();
+		require('../../motor/conexion.php');
+		$sql = "CALL Pro_Ped_RegresaDatos(3, '', 0, 0, '')";
+		foreach($cxn->query($sql) as $row)
+		{
+			$nom[]=$row;
+	    }
+		return $nom;
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
+function ObtenerDesglosePedido($pedido)
+{
+	try
+	{
+		$nom=array();
+		require('../../motor/conexion.php');
+		$sql = "CALL Pro_Ped_RegresaDatos(4, '', ".$pedido.", 0, '')";
+		foreach($cxn->query($sql) as $row)
+		{
+			$nom[]=$row;
+	    }
+		return $nom;
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
 function ObtenerPlatilloRelacional($PlatilloID)
 {
 	try
@@ -38,6 +89,28 @@ function AgregarPedRelacional($PlatilloID,$TipoGuisoID,$Costo)
     try{
 		require('../../motor/conexion.php');
 		$pst = $cxn->prepare("CALL Pro_Ped_Relacional(1,".$PlatilloID.",".$TipoGuisoID.",".$Costo.",0)");
+		$pst->execute();
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
+function AgregarPedido($pedido,$lugar,$plato,$platillo,$Cuantos,$Guisos)
+{
+	try{
+		require('../../motor/conexion.php');
+		$pst = $cxn->prepare("CALL Pro_Ped_Pedidos(1,".$pedido.", ".$platillo.", ".$Guisos.", ".$lugar.", ".$plato.", ".$Cuantos.", 0, 0)");
+		$pst->execute();
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
+function FinalizarPedido($pedido)
+{
+	try{
+		require('../../motor/conexion.php');
+		$pst = $cxn->prepare("CALL Pro_Ped_Pedidos(2,".$pedido.", 0, 0, 0, 0, 0, 0, 0)");
 		$pst->execute();
 	}catch(PDOException $e){
 		print "Error! ".$e->getMessage()."<br>";

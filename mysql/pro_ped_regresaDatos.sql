@@ -5,5 +5,13 @@ IF Opcion = 0 THEN
 BEGIN
 	select * from cat_ped_tipoguiso;
 END;
+ELSEIF Opcion = 1 THEN
+begin
+	select Platillo from cat_ped_platillo where PlatilloID = _id;
+END;
+elseif Opcion = 2 then
+begin
+	select max(NoPedido) NoPedido from cat_ped_pedido;
+end;
 END IF;
 END
