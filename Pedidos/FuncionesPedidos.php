@@ -33,6 +33,23 @@ function ObtenerNoPedido()
 		die();
 	}
 }
+function ObtenerLugar($NoPedido)
+{
+	try
+	{
+		$nom;
+		require('../../motor/conexion.php');
+		$sql = "CALL Pro_Ped_RegresaDatos(5, '', ".$NoPedido.", 0, '')";
+		foreach($cxn->query($sql) as $row)
+		{
+			$nom=$row;
+	    }
+		return $nom["Lugar"];
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
 function ObtenerPedidosActivos()
 {
 	try
@@ -89,6 +106,17 @@ function AgregarPedRelacional($PlatilloID,$TipoGuisoID,$Costo)
     try{
 		require('../../motor/conexion.php');
 		$pst = $cxn->prepare("CALL Pro_Ped_Relacional(1,".$PlatilloID.",".$TipoGuisoID.",".$Costo.",0)");
+		$pst->execute();
+	}catch(PDOException $e){
+		print "Error! ".$e->getMessage()."<br>";
+		die();
+	}
+}
+function eliminaPlatillo($PlatilloID)
+{
+    try{
+		require('../../motor/conexion.php');
+		$pst = $cxn->prepare("CALL Pro_Ped_RegresaDatos(6,'',".$PlatilloID.",0,'')");
 		$pst->execute();
 	}catch(PDOException $e){
 		print "Error! ".$e->getMessage()."<br>";

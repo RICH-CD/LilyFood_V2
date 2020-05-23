@@ -25,7 +25,9 @@
 		<!-- Nav -->
 		<nav id="menu">
 			<ul class="links">
-			<?php /*
+			<?php
+			header("Location: Pedidos/main.php")
+			/*
 				foreach( $nom as $row ) 
 				{	
 					if($row['ModuloID']==2)

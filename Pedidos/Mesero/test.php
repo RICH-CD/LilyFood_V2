@@ -14,7 +14,7 @@
 <!--</form>-->
 <?php
 require('../FuncionesPedidos.php');
-echo ObtenerNoPedido();
+eliminaPlatillo(2);
 ?>
 </body>
 </html>

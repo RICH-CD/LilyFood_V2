@@ -3,7 +3,8 @@ require('../FuncionesPedidos.php');
 $menu = ObtenerMenuAnidada();
 $platillos = ObtenerPlatillo();
 $Guisos = ObtenerGuisos();
-$pedido = ObtenerNoPedido();
+$pedido = $_GET['noPedido'];
+$lugar = ObtenerLugar($pedido);
 ?>
 <html>
 	<head>
@@ -26,11 +27,10 @@ $pedido = ObtenerNoPedido();
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
 		<script type="text/javascript">
-		function recuperainfo(nopedido){
+		function recuperainfo(nopedido,lugar){
 			try{
 			//	alert(nopedido);
-			nopedido = nopedido+1;
-				var lugar = document.querySelector('input[name = "para"]:checked').value;
+				//var lugar = document.querySelector('input[name = "para"]:checked').value;
 				var plato = document.querySelector('input[name = "plato"]:checked').value;
 				var platillo = document.querySelector('input[name = "platillo"]:checked').value;
 				var Cuantos = document.querySelector('input[name = "Cuantos"]:checked').value;
@@ -119,14 +119,15 @@ $pedido = ObtenerNoPedido();
 
 
 					<div class="table-wrapper">
-						<!----------------------------------------cero barra aqui o llevar---->
+						<!----------------------------------------cero barra aqui o llevar
 					<div class="scrollHorizontal">
 						Para LLevar o para Aqui
                    <table>
                        <tr>
 						   <?php
 						   
-/////////////////////////////////////   para1 = para aqui ,    para2= para llevar
+/////////////////////////////////////   para1 = para aqui ,    para2= para llevar/*
+/*
                             echo "<td>";
 						   		echo "<div class='4u 12u$(small)'>";
 									echo "<input type='radio' id='para1' name='para' value='1'>";
@@ -139,7 +140,7 @@ $pedido = ObtenerNoPedido();
 									echo "<label for='para2' class='letras'>Para Llevar</label>";
 								echo "</div>";
 							echo "</td>";
-
+*/
 						   ?>
                         </tr>
                     </table>  
@@ -232,7 +233,7 @@ $pedido = ObtenerNoPedido();
 					<!----------------------------------------------------------------------------------------------------------------------------------->
 					<div class="scrollHorizontal">
 					<!--vamos a enviar como parametro el numero de pedido-->
-						   <center><button onclick="recuperainfo(<?php echo ObtenerNoPedido(); ?>)">Guardar</button></center>
+						   <center><button onclick="recuperainfo(<?php echo $pedido.','.$lugar; ?>)">Guardar</button></center>
 					</div>
 					<!----------------------------------------------------------------------ver pedidos button------------------->
 					<div class="scrollHorizontal">

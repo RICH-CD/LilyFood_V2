@@ -1,7 +1,7 @@
 <?php
 require('../FuncionesPedidos.php');
 $menu = ObtenerMenuAnidada();
-$pedidos = $_GET['pedido'];
+$pedidos = $_GET['noPedido'];
 ?>
 <html>
 	<head>
@@ -24,11 +24,6 @@ $pedidos = $_GET['pedido'];
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
 		<script type="text/javascript">
-		function Finalizar(pedido)
-		{
-            //lert(pedido);
-			window.location="Meserofinalizar.php?pedido="+pedido;
-		}	
         function resta(total)
         {
             
@@ -40,6 +35,40 @@ $pedidos = $_GET['pedido'];
         {
             window.location="MeseroPedidos.php";
         }
+        function eliminar(id)
+        {
+            sendAjax(id);
+            setInterval("actualizar()",2000);
+        }
+        function sendAjax(id)
+    	{
+			try{
+				var dat = "op=2&id="+id;
+				
+				//alert(dat);
+				$.ajax({
+					url: 'MeseroAuxiliar.php',
+					type: 'POST',
+					data: dat,
+				})
+				.done(function(){
+					Swal.fire("Platillo Eliminado");
+					unselect();
+				})
+				.fail(function(){
+					Swal.fire({
+				icon: 'error',
+				title: 'Error',
+				text: 'Algo salio mal vuelve a intentar, si el problema persiste llama a RICH',
+				footer: ':('
+				});
+				});
+			}catch(e)
+			{
+				alert(e);
+			}
+    	}
+        function actualizar(){location.reload(true);}
 		</script>
 </head>
 	<body class="subpage">
@@ -74,21 +103,24 @@ $pedidos = $_GET['pedido'];
                     	
                         $sumatoria = 0;	
                         ?>
-                        <center><table width="99%"><tr><td colspan="3" align="center">
+                        <center><table width="99%"><tr><td colspan="4" align="center">
                             <?php	    
                         echo "Pedido Numero: ".$pedidos;  
                         $desglose = ObtenerDesglosePedido($pedidos);
                         echo "</td></tr>";
                         ?>
                             <tr>
-                            <td width="33%">
+                            <td width="25%">
                                 Cantidad
                             </td>
-                            <td width="33%">
+                            <td width="25%">
                                Platillo
                             </td>
-                            <td width="33%">
+                            <td width="25%">
                                Costo
+                            </td>
+                            <td width="25%">
+                               Eliminar
                             </td>
                         </tr>
                         <?php
@@ -96,56 +128,26 @@ $pedidos = $_GET['pedido'];
 					    {	
                         ?>
                         <tr>
-                            <td width="33%">
+                            <td width="25%">
                                 <?php echo $d['Cantidad']; ?>
                             </td>
-                            <td width="33%">
+                            <td width="25%">
                                 <?php echo $d['Platillo']; ?>
                             </td>
-                            <td width="33%">
+                            <td width="25%">
                                 <?php
                                 $precio = ($d['Cantidad']*$d['Costo']);
                                 $sumatoria += $precio;
                                 echo $precio; ?>
                             </td>
+                            <td width="25%">
+                                <?php echo "<button onclick='eliminar(".$d['PedidoID'].")'>Quitar</button>"; ?>
+                            </td>
                         </tr>
                         <?php
                         }
                         ?>
-                        <tr>
-                            <td colspan="2" width="66%">
-                                Total
-                            </td>
-                            <td width="33%">
-                            <center style="all: unset; color:#5AA6ED; font-style: bold; font-size: 20px; align-content: center;">
-                                <?php echo "$".$sumatoria; 
-                                
-                                ?>
-                            </center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" width="66%">
-                                Pago
-                            </td>
-                            <td width="33%">
-                            <center style="all: unset; color:#5AA6ED; font-style: bold; font-size: 20px; align-content: center;">
-                                <input name="pago" id="pago" type="text" onkeyup="resta(<?php echo $sumatoria; ?>)">
-                            </center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" width="66%">
-                                Vuelto
-                            </td>
-                            <td width="33%">
-                            <center style="all: unset; color:#FF0000; font-style: bold; font-size: 20px; align-content: center;">
-                                <p id="vuelto">$</p>
-                            </center>
-                            </td>
-                        </tr>
-                        <tr><td colspan="3" align="center"><button onclick="Finalizar(<?php echo $pedidos; ?>)">Finalizar</button></td></tr>
-                        <tr><td colspan="3" align="center"><button onclick="regresar()">Regresar</button></td></tr>
+                        <tr><td colspan="4" align="center"><button onclick="regresar()">Regresar</button></td></tr>
                     </table></center><br><br><br>
                         <?php
 					

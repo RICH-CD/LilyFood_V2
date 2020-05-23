@@ -12,4 +12,8 @@ if($op==1)
     $Guisos = $_POST['Guisos'];
     AgregarPedido($pedido,$lugar,$plato,$platillo,$Cuantos,$Guisos);
 }
+else
+{
+    eliminaPlatillo($_POST['id']);
+}
 ?>

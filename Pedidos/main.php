@@ -66,7 +66,7 @@ $menu = ObtenerMenu();
 							</tr>
 							<tr onclick="window.location = 'Cocina/CocinaMain.php'">
 								<td align="center">
-									Mesero
+									Cocina
 								</td>
 							</tr>
 							<tr onclick="window.location = 'adminmain.php'">

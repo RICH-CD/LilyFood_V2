@@ -1,7 +1,7 @@
 <?php
 require('../FuncionesPedidos.php');
 $menu = ObtenerMenuAnidada();
-$pedidos = $_GET['pedido'];
+$pedidos = ObtenerPedidosActivos(); 
 ?>
 <html>
 	<head>
@@ -24,22 +24,13 @@ $pedidos = $_GET['pedido'];
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
 		<script type="text/javascript">
-		function Finalizar(pedido)
+		function cobrar(pedido)
 		{
-            //lert(pedido);
-			window.location="Meserofinalizar.php?pedido="+pedido;
+			window.location="MeseroCobrar.php?pedido="+pedido;
 		}	
-        function resta(total)
-        {
-            
-            var pago = parseFloat(document.getElementById("pago").value);
-            var vuelto = pago-total;
-            document.getElementById("vuelto").innerHTML = vuelto;
-        }
-        function regresar()
-        {
-            window.location="MeseroPedidos.php";
-        }
+        function actualizar(){location.reload(true);}
+//Función para actualizar cada 4 segundos(4000 milisegundos)
+  setInterval("actualizar()",10000);
 		</script>
 </head>
 	<body class="subpage">
@@ -70,25 +61,32 @@ $pedidos = $_GET['pedido'];
 			<section class="wrapper style1">
 			    <div class="inner">
 <!-------------Contenido body--->
+
+<!-------Contenedor izq------>
+<div class="izq">
+<center style="all: unset; color:#5AA6ED; font-style: bold; font-size: 30px; align-content: center;">Para Aqui</center>
                     <?php
-                    	
+                    foreach($pedidos as $p)
+					{	
+                        if($p['LugarID']==1)
+                        {
                         $sumatoria = 0;	
                         ?>
                         <center><table width="99%"><tr><td colspan="3" align="center">
                             <?php	    
-                        echo "Pedido Numero: ".$pedidos;  
-                        $desglose = ObtenerDesglosePedido($pedidos);
+                        echo "Pedido Numero: ".$p['NoPedido'];  
+                        $desglose = ObtenerDesglosePedido($p['NoPedido']);
                         echo "</td></tr>";
                         ?>
                             <tr>
+                            <td width="33%">
+                            No Plato
+                            </td>
                             <td width="33%">
                                 Cantidad
                             </td>
                             <td width="33%">
                                Platillo
-                            </td>
-                            <td width="33%">
-                               Costo
                             </td>
                         </tr>
                         <?php
@@ -97,61 +95,78 @@ $pedidos = $_GET['pedido'];
                         ?>
                         <tr>
                             <td width="33%">
-                                <?php echo $d['Cantidad']; ?>
+                            <span style="color:#000000; font-style: bold; font-size: 15px;" > <?php echo $d['NoPlato']; ?></span>
                             </td>
                             <td width="33%">
-                                <?php echo $d['Platillo']; ?>
+                            <span style="color:#000000; font-style: bold; font-size: 15px;" > <?php echo $d['Cantidad']; ?></span>
                             </td>
                             <td width="33%">
-                                <?php
-                                $precio = ($d['Cantidad']*$d['Costo']);
-                                $sumatoria += $precio;
-                                echo $precio; ?>
+                            <span style="color:#000000; font-style: bold; font-size: 15px;" > <?php echo $d['Platillo']; ?></span>
                             </td>
                         </tr>
                         <?php
                         }
                         ?>
-                        <tr>
-                            <td colspan="2" width="66%">
-                                Total
-                            </td>
-                            <td width="33%">
-                            <center style="all: unset; color:#5AA6ED; font-style: bold; font-size: 20px; align-content: center;">
-                                <?php echo "$".$sumatoria; 
-                                
-                                ?>
-                            </center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" width="66%">
-                                Pago
-                            </td>
-                            <td width="33%">
-                            <center style="all: unset; color:#5AA6ED; font-style: bold; font-size: 20px; align-content: center;">
-                                <input name="pago" id="pago" type="text" onkeyup="resta(<?php echo $sumatoria; ?>)">
-                            </center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" width="66%">
-                                Vuelto
-                            </td>
-                            <td width="33%">
-                            <center style="all: unset; color:#FF0000; font-style: bold; font-size: 20px; align-content: center;">
-                                <p id="vuelto">$</p>
-                            </center>
-                            </td>
-                        </tr>
-                        <tr><td colspan="3" align="center"><button onclick="Finalizar(<?php echo $pedidos; ?>)">Finalizar</button></td></tr>
-                        <tr><td colspan="3" align="center"><button onclick="regresar()">Regresar</button></td></tr>
                     </table></center><br><br><br>
                         <?php
-					
+                        }
+					}
 
 ?>
-					
+</div>
+                    <!----fin contenedor izq----->
+                    <!-----------div derecho---->
+                    <div class="der">
+                    <center style="all: unset; color:#5AA6ED; font-style: bold; font-size: 30px; align-content: center;">Para Llevar</center>
+                    <?php
+                    foreach($pedidos as $p)
+					{	
+                        if($p['LugarID']==2)
+                        {
+                        $sumatoria = 0;	
+                        ?>
+                        <center><table width="99%"><tr><td colspan="3" align="center">
+                            <?php	    
+                        echo "Pedido Numero: ".$p['NoPedido'];  
+                        $desglose = ObtenerDesglosePedido($p['NoPedido']);
+                        echo "</td></tr>";
+                        ?>
+                            <tr>
+                            <td width="33%">
+                            No Plato
+                            </td>
+                            <td width="33%">
+                                Cantidad
+                            </td>
+                            <td width="33%">
+                               Platillo
+                            </td>
+                        </tr>
+                        <?php
+                        foreach($desglose as $d)
+					    {	
+                        ?>
+                        <tr>
+                            <td width="33%">
+                                <span style="color:#000000; font-style: bold; font-size: 15px;" ><?php echo $d['NoPlato']; ?> </span>
+                            </td>
+                            <td width="33%">
+                            <span style="color:#000000; font-style: bold; font-size: 15px;" ><?php echo $d['Cantidad']; ?></span>
+                            </td>
+                            <td width="33%">
+                            <span style="color:#000000; font-style: bold; font-size: 15px;" ><?php echo $d['Platillo']; ?></span>
+                            </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                    </table></center><br><br><br>
+                        <?php
+                        }
+					}
+
+?>
+</div>
 			    </div>
 					</section>
 			</div>
@@ -163,5 +178,5 @@ $pedidos = $_GET['pedido'];
 			<script src="../../assets/js/skel.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
-				</body>
+			</body>
 </html>

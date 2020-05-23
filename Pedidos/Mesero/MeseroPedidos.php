@@ -28,6 +28,14 @@ $pedidos = ObtenerPedidosActivos();
 		{
 			window.location="MeseroCobrar.php?pedido="+pedido;
 		}	
+        function agregar(pedido)
+        {
+            window.location="MeseroAgregarExistente.php?noPedido="+pedido;
+        }
+        function quitar(pedido)
+        {
+            window.location="MeseroQuitar.php?noPedido="+pedido;  
+        }
 		</script>
 </head>
 	<body class="subpage">
@@ -43,10 +51,9 @@ $pedidos = ObtenerPedidosActivos();
 			<ul class="links">
 				<li>Acceso Rapido</li>	
 				<?php
-					foreach($menu as $m)
-					{			    
-						echo "<ul><a href='../Guisos/".$m['URL']."'>".$m['Menu']."</ul>";
-					}
+								    
+						echo "<ul><a href='MeseroAgregar.php'>Agregar Pedido</ul>";
+					
 					?>
 				<li><a href='../../index.php'><br>Cerrar Sesion</a><li>
 			</ul>
@@ -93,8 +100,9 @@ $pedidos = ObtenerPedidosActivos();
                             </td>
                             <td width="33%">
                                 <?php
-                                $sumatoria += $d['Costo'];
-                                echo $d['Costo']; ?>
+                                $precio = ($d['Cantidad']*$d['Costo']);
+                                $sumatoria += $precio;
+                                echo $precio; ?>
                             </td>
                         </tr>
                         <?php
@@ -112,7 +120,11 @@ $pedidos = ObtenerPedidosActivos();
                             </center>
                             </td>
                         </tr>
-                        <tr><td colspan="3" align="center"><button onclick="cobrar(<?php echo $p['NoPedido']; ?>)">Cobrar</button></td></tr>
+                        <tr>
+                            <td colspan="1" align="center"><button onclick="agregar(<?php echo $p['NoPedido']; ?>)">Agregar</button></td>
+                            <td colspan="1" align="center"><button onclick="cobrar(<?php echo $p['NoPedido']; ?>)">Cobrar</button></td>
+                            <td colspan="1" align="center"><button onclick="quitar(<?php echo $p['NoPedido']; ?>)">Quitar</button></td>
+                        </tr>
                     </table></center><br><br><br>
                         <?php
 					}
