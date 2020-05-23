@@ -57,11 +57,11 @@ $platillos = ObtenerPlatillo();
 
 					<div class="table-wrapper">
                     <table>
-						<tr onclick="window.location = 'CostosAgregar.php'">
+						<!--<tr onclick="window.location = 'CostosAgregar.php'">
 							<td align="center">
 								Agregar Costo
 							</td>
-						</tr>
+						</tr>-->
 						<tr onclick="window.location = 'CostosVer.php'">
 							<td align="center">
 								Ver Costos
